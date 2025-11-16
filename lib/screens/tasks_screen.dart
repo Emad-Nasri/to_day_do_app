@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_day_do_app/widgets/tasks_list.dart';
 
 class TasksScreen extends StatelessWidget {
   const TasksScreen({super.key});
@@ -9,7 +10,12 @@ class TasksScreen extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         shape: CircleBorder(),
-        onPressed: null,
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (context) => Container(),
+          );
+        },
         backgroundColor: Colors.indigo[400],
         child: Icon(Icons.add, color: Colors.white),
       ),
@@ -49,6 +55,7 @@ class TasksScreen extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
+                child: TasksList(),
               ),
             ),
           ],
