@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_day_do_app/screens/add_task_screen.dart';
 import 'package:to_day_do_app/widgets/tasks_list.dart';
 
 class TasksScreen extends StatelessWidget {
@@ -12,8 +13,16 @@ class TasksScreen extends StatelessWidget {
         shape: CircleBorder(),
         onPressed: () {
           showModalBottomSheet(
+            isScrollControlled: true,
             context: context,
-            builder: (context) => Container(),
+            builder: (context) => SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom,
+                ),
+                child: AddTaskScreen(),
+              ),
+            ),
           );
         },
         backgroundColor: Colors.indigo[400],
