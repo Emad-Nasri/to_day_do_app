@@ -5,9 +5,27 @@ class TaskTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text('go shopping'),
-      trailing: Checkbox(value: false, onChanged: null),
+    return ListTile(title: Text('go shopping'), trailing: TaskCheckBox());
+  }
+}
+
+class TaskCheckBox extends StatefulWidget {
+  @override
+  State<TaskCheckBox> createState() => _TaskCheckBoxState();
+}
+
+class _TaskCheckBoxState extends State<TaskCheckBox> {
+  bool? isChecked = false;
+  @override
+  Widget build(BuildContext context) {
+    return Checkbox(
+      activeColor: Colors.teal[400],
+      value: isChecked,
+      onChanged: (newValue) {
+        setState(() {
+          isChecked = newValue;
+        });
+      },
     );
   }
 }
