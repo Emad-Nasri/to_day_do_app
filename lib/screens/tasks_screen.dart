@@ -32,7 +32,12 @@ class _TasksScreenState extends State<TasksScreen> {
                 padding: EdgeInsets.only(
                   bottom: MediaQuery.of(context).viewInsets.bottom,
                 ),
-                child: AddTaskScreen(),
+                child: AddTaskScreen((newTaskTitle) {
+                  setState(() {
+                    tasks.add(Task(name: newTaskTitle));
+                    Navigator.pop(context);
+                  });
+                }),
               ),
             ),
           );
@@ -66,7 +71,7 @@ class _TasksScreenState extends State<TasksScreen> {
               ],
             ),
             Text(
-              '4 Tasks',
+              '${tasks.length} Tasks',
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
             SizedBox(height: 20),
