@@ -7,4 +7,9 @@ class TaskData extends ChangeNotifier {
     Task(name: 'Buy a gift'),
     Task(name: 'Repair the car'),
   ];
+
+  void addTask(String newTaskTitle) {
+    tasks.add(Task(name: newTaskTitle));
+    notifyListeners(); //تحديث كل الويدجيت
+  }
 }

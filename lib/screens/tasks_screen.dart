@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:to_day_do_app/models/task.dart';
 import 'package:to_day_do_app/models/task_data.dart';
 import 'package:to_day_do_app/screens/add_task_screen.dart';
 import 'package:to_day_do_app/widgets/tasks_list.dart';
