@@ -1,22 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:to_day_do_app/models/task.dart';
+import 'package:to_day_do_app/models/task_data.dart';
 import 'package:to_day_do_app/screens/add_task_screen.dart';
 import 'package:to_day_do_app/widgets/tasks_list.dart';
 
-class TasksScreen extends StatefulWidget {
-  const TasksScreen({super.key});
-
-  @override
-  State<TasksScreen> createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [
-    Task(name: 'Go shopping'),
-    Task(name: 'Buy a gift'),
-    Task(name: 'Repair the car'),
-  ];
-
+class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,10 +22,10 @@ class _TasksScreenState extends State<TasksScreen> {
                   bottom: MediaQuery.of(context).viewInsets.bottom,
                 ),
                 child: AddTaskScreen((newTaskTitle) {
-                  setState(() {
-                    tasks.add(Task(name: newTaskTitle));
-                    Navigator.pop(context);
-                  });
+                  // setState(() {
+                  //   tasks.add(Task(name: newTaskTitle));
+                  //   Navigator.pop(context);
+                  // });
                 }),
               ),
             ),
@@ -71,7 +60,7 @@ class _TasksScreenState extends State<TasksScreen> {
               ],
             ),
             Text(
-              '${tasks.length} Tasks',
+              '${Provider.of<TaskData>(context).tasks.length} Tasks',
               style: TextStyle(color: Colors.white, fontSize: 18),
             ),
             SizedBox(height: 20),
@@ -81,7 +70,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
-                child: TasksList(tasks),
+                child: TasksList(),
               ),
             ),
           ],

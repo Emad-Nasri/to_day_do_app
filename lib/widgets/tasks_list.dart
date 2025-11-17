@@ -1,38 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:to_day_do_app/models/task.dart';
+import 'package:provider/provider.dart';
+import 'package:to_day_do_app/models/task_data.dart';
 import 'package:to_day_do_app/widgets/task_tile.dart';
 
-class TasksList extends StatefulWidget {
-  final List<Task> tasks;
-  TasksList(this.tasks);
-
-  @override
-  State<TasksList> createState() => _TasksListState();
-}
-
-class _TasksListState extends State<TasksList> {
+class TasksList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: widget.tasks.length,
-      itemBuilder: (BuildContext context, int index) {
-        return TaskTile(
-          isChecked: widget.tasks[index].isDone,
-          taskTitle: widget.tasks[index].name,
-          checkboxChange: (newValue) {
-            setState(() {
-              widget.tasks[index].doneChange();
-            });
+    return Consumer<TaskData>(
+      builder: (context, taskData, child) {
+        return ListView.builder(
+          itemCount: Provider.of<TaskData>(context).tasks.length,
+          itemBuilder: (BuildContext context, int index) {
+            return TaskTile(
+              isChecked: taskData
+                  .tasks[index]
+                  .isDone, //=Provider.of<TaskData>(context).tasks[index].isDone,
+              taskTitle: taskData
+                  .tasks[index]
+                  .name, //=Provider.of<TaskData>(context).tasks[index].name
+              checkboxChange: (newValue) {
+                // setState(() {
+                //   widget.tasks[index].doneChange();
+                // });
+              },
+            );
           },
         );
       },
     );
-    // return ListView(
-    //   children: [
-    //     TaskTile(taskTitle: tasks[0].name, isChecked: tasks[0].isDone),
-    //     TaskTile(taskTitle: tasks[1].name, isChecked: tasks[1].isDone),
-    //     TaskTile(taskTitle: tasks[2].name, isChecked: tasks[2].isDone),
-    //   ],
-    // );
   }
 }
